@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/JavaCoursework.iml" filepath="$PROJECT_DIR$/.idea/JavaCoursework.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/PcShop.main.iml" filepath="$PROJECT_DIR$/.idea/modules/PcShop.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.example.PcShop.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.example.PcShop.main.iml" />
     </modules>
   </component>
 </project>

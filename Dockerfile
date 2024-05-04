@@ -9,7 +9,7 @@ RUN gradle build
 #
 # Package stage
 #
-FROM adoptopenjdk/openjdk11:alpine-jre
+FROM adoptopenjdk/openjdk21:alpine-jre
 WORKDIR /app
 COPY --from=build /home/gradle/src/build/libs/*.jar /app/demo.jar
 EXPOSE 8080
