@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initialscale=1.0">
+    <title>Iron World - Личный кабинет</title>
+    <link rel="icon" type="image/svg+xml" href="pict/video_card.svg">
+    <link rel="icon" href="pict/video_card.ico" sizes="any">
+    <link rel="icon" type="image/png" href="pict/video_card.png">
+    <!-- <link rel="stylesheet" type="text/css" href="css/reset.css"> -->
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+SC&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Caption&display=swap" rel="stylesheet">
+ </head>
+ <body onload="ttxUser()" id="Topic1">
+    <div class="feedback">
+        <div>
+            <a href="#Topic1">
+                <img src="pict/circle-arrow-up-svgrepo-com.svg">
+
+            </a>
+        </div>
+    </div>
+
+
+    <header th:replace = "~{header :: header}"></header>
+    <aside class="panel">
+        <li th:replace = "~{navigation :: navigation}"></li>
+    </aside>
+    <main class="gallery-transform">
+        <article> 
+            <section class="user_page">
+                <form action="/logout" method="GET" class="outButtonBlock">
+                    <button id="outButton"  type="submit">Выйти из аккаунта</button>
+                </form>
+                <form action="/setNewUserDetails" method="post" th:object="${user}">
+                    <div>
+                        <div class="form-group">
+                            <h2>Информация о пользователе</h2>
+                        </div>
+                        <div class="form-group">
+                            <label th:text="'Ваш уникальный ID: ' + ${user.id}"></label>
+                        </div>
+
+                        <div class="form-group">
+                            <label th:text="'Email: ' + ${user.email}"></label>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Юзернейм</label>
+                            <input type="text" id="usernameInput" name="username" th:value="${user.username}" placeholder="Введите свой юзернейм">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Имя</label>
+                            <input type="text" id="nameInput" name="name" th:value="${user.name}" placeholder="Введите свое имя">
+                        </div>
+                        <div class="form-group">
+                            <label>Фамилия</label>
+                            <input type="text" id="surnameInput" name="lastName" th:value="${user.lastName}" placeholder="Введите свою фамилию">
+                        </div>
+                        <div class="form-group">
+                            <label>Номер телефона</label>
+                            <input type="tel" id="phoneNumberInput" name="phoneNumber" th:value="${user.phoneNumber}" placeholder="Введите номер телефона">
+                        </div>
+                        <div class="form-group">
+                            <label th:text="'Функциональная роль: ' + ${role}"></label>
+                        </div>
+                        <div class="form-group">
+                            <label th:text="${user.accountBan == true ? 'Статус аккаунта: заблокирован' : 'Статус аккаунта: активен'}"></label>
+                        </div>
+                        <div class="form-group">
+                            <label th:text="'Количество заказов: ' + ${user.orders.size()}"></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" id="saveButton">Обновить данные</button>
+                    </div>
+                </form>
+
+            </section>
+            <section class="user_page">
+                <div class="form-group">
+
+                    <h1>Все ваши заказы</h1>
+                    <table>
+                        <thead>
+                        <th>ID Заказа</th>
+                        <th>Статус</th>
+                        <th>Полная стоимость</th>
+                        <th>Дата доставки</th>
+                        <th>Адресс доставки</th>
+                        <th>Товаров в корзине</th>
+                        </thead>
+                        <tbody>
+                        <tr th:each="userOrder : ${userOrders}">
+                            <td th:text="${userOrder.id}">ID</td>
+                            <td th:text="${userOrder.statusCompleted}">ID</td>
+                            <td th:text="${userOrder.totalCost}">ID</td>
+                            <td th:text="${userOrder.deliveryDate}">ID</td>
+                            <td th:text="${userOrder.address}">ID</td>
+                            <td th:text="${userOrder.orderList.size()}">ID</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </article>
+    </main>
+    <footer th:replace = "~{footer :: footer}"></footer>
+ </body>
+<script src="java/main.js"></script>
+<script src="java/tab.js"></script>
+
+</html>

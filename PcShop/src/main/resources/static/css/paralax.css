@@ -1,0 +1,111 @@
+body, html {
+  height: clamp(220%, 330vw, 250%);
+  width: 100%;
+  margin: 0;
+}
+
+#parallax {
+ position: relative;
+ background-position: center;
+ background-size: cover;
+
+ background-attachment: fixed;
+ height: 100%;
+}
+
+.content{
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.4px);
+    -webkit-backdrop-filter: blur(3.4px);
+    border: 1px solid rgba(255, 255, 255, 1);
+    box-shadow: 5px 10px 10px green;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+}
+
+
+.content h1{
+  color: white;
+  font-size: clamp(2rem, 3.6vw, 3rem);
+}
+
+.content p{
+  color: white;
+  font-size: clamp(1.1rem, 2.6vw, 2rem);
+}
+
+.content a{
+  width: 860px;
+  height: 60px;
+  border-radius: 3px;
+  border: white;
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(33,212,96,1) 0%, rgba(0,212,255,1) 100%);
+  color: black;
+  font-size: clamp(1.4rem, 2.6vw, 2.4rem);
+  list-style-type: none;
+  text-decoration: none;
+  margin: 10px;
+}
+
+.content1 {
+  width: clamp(17rem, 40vw, 35rem);
+  position: absolute;
+  top: 7%;
+  left: 50%;
+  text-align: center;
+  opacity: 1;
+}
+
+.content2 {
+  width: clamp(17rem, 80vw, 45rem);
+
+  position: absolute;
+  top: 24%;
+  left: 50%;
+  text-align: center;
+}
+
+
+
+.content3 {
+  width: clamp(17rem, 80vw, 45rem);
+
+  position: absolute;
+  top: 44%;
+  left: 50%;
+  text-align: center;
+}
+
+.content4 {
+  width: clamp(17rem, 80vw, 45rem);
+
+  position: absolute;
+  top: 63%;
+  left: 50%;
+  text-align: center;
+}
+
+.content2 img, .content4 img{
+  width: 100%;
+}
+
+
+.content5 {
+  width: clamp(17rem, 80vw, 45rem);
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  text-align: center;
+}
+
+.content6 {
+  width: clamp(17rem, 40vw, 35rem);
+
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  text-align: center;
+}
