@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initialscale=1.0">
+    <title>Iron World - Личный кабинет</title>
+    <link rel="icon" type="image/svg+xml" href="pict/video_card.svg">
+    <link rel="icon" href="pict/video_card.ico" sizes="any">
+    <link rel="icon" type="image/png" href="pict/video_card.png">
+    <!-- <link rel="stylesheet" type="text/css" href="css/reset.css"> -->
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+SC&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Caption&display=swap" rel="stylesheet">
+</head>
+<body onload="ttxUser()" id="Topic1">
+<div class="feedback">
+    <div>
+        <a href="#Topic1">
+            <img src="pict/circle-arrow-up-svgrepo-com.svg">
+
+        </a>
+    </div>
+</div>
+<header th:replace = "~{header :: header}"></header>
+<aside class="panel">
+    <li th:replace = "~{navigation :: navigation}"></li>
+</aside>
+<main class="gallery-transform">
+    <article>
+        <div>
+            <div class="modal-container">
+                <div class="modal-block">
+                    <form action="/regSave" method="post" th:object="${userReg}" class="modal-form">
+                        <h1>Регистрация</h1>
+                        <div th:if="${Message}" class="alert">
+                            <h1 th:text="${Message}"></h1>
+                        </div>
+                        <div th:if="${RegFull}" class="">
+                            <h1 th:text="${RegFull}"></h1>
+                        </div>
+                        <div>
+                            <input type="email" id="email" name="email" required placeholder="Введите почту" />
+                        </div>
+                        <div>
+                            <input type="text" id="username" name="username" required placeholder="Введите никнейм" />
+                        </div>
+                        <div>
+                            <p>Пароль должен содержать минимум 5 символов</p>
+                            <input type="password" id="password" name="password" required placeholder="Введите пароль">
+                        </div>
+                        <div>
+                            <input type="password" id="passwordConfirm" name="passwordConfirm" placeholder="Подтвердите пароль">
+                        </div>
+                        <div style="display: flow">
+                            <button id="regButton">Зарегестрироваться</button>
+                        </div>
+                    </form>
+                    <div class="modalFormSpecial">
+                        <p>Уже есть аккаунт?</p>
+                        <a href="/login"><button class="buttonSpecial">Войти</button></a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </article>
+</main>
+<footer th:replace = "~{footer :: footer}"></footer>
+</body>
+
+<script src="java/main.js"></script>
+<script src="java/tab.js"></script>
+<script src="java/user_enter.js"></script>
+</html>

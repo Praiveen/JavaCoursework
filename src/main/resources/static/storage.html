@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initialscale=1.0">
+    <title>Iron World - Личный кабинет</title>
+    <link rel="icon" type="image/svg+xml" href="pict/video_card.svg">
+    <link rel="icon" href="pict/video_card.ico" sizes="any">
+    <link rel="icon" type="image/png" href="pict/video_card.png">
+    <!-- <link rel="stylesheet" type="text/css" href="css/reset.css"> -->
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+SC&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Caption&display=swap" rel="stylesheet">
+</head>
+<body onload="ttxUser()" id="Topic1">
+    <div class="feedback">
+        <div>
+            <a href="#Topic1">
+                <img src="pict/circle-arrow-up-svgrepo-com.svg">
+
+            </a>
+        </div>
+    </div>
+
+
+    <header th:replace = "~{header :: header}"></header>
+    <aside class="panel">
+        <li th:replace = "~{navigation :: navigation}"></li>
+    </aside>
+    <main class="gallery-transform">
+        <article>
+            <section class="user_page">
+                <div th:if="${orderId}">
+                    <h1 th:text="'Номер заказа: ' + ${orderId}"></h1>
+                </div>
+                <div th:if="${enterError}">
+                    <h1 th:text="${enterError}"></h1>
+                </div>
+            </section>
+<!--            <section class="user_page" sec:authorize="isAuthenticated()" th:if="${#lists.isEmpty(storage)} and !${not currentUser.accountBan}">-->
+            <section class="user_page" sec:authorize="isAuthenticated()" th:if="${#lists.isEmpty(storage)}">
+                <div class="form-group-storage">
+                    <h1>Корзина пуста, добавьте какой-нибудь товар!</h1>
+                </div>
+            </section>
+            <section class="user_page" th:if="${not #lists.isEmpty(storage)}">
+                <div th:if="${#lists.isEmpty(storage)}">
+
+                </div>
+                <form action="/payOrder" method="post" class="form-group">
+                    <h3 class="form-group-storage">Оформить заказ</h3>
+                    <div class="form-group-storage" th:if="${Message}">
+                        <h1 th:text="${Message}"></h1>
+                    </div>
+                    <div class="form-group-storage">
+                        <label for="address">Введите адрес доставки</label>
+                        <input type="text" id="address" name="address" required placeholder="Введите адрес" />
+                    </div>
+                    <div class="form-group-storage">
+                        <label for="deliveryDate">Выберете дату доставки:</label>
+                        <input type="date" id="deliveryDate" name="deliveryDate" min="yyyy-mm-dd" required />
+                    </div>
+                    <button class="form-group" type="submit">Оформить</button>
+                </form>
+            </section>
+            <section class="user_page">
+                <table th:if="${not #lists.isEmpty(storage)}">
+                    <thead>
+                    <th>Наименование товара</th>
+                    <th>Цена за единицу</th>
+                    <th>Количество</th>
+                    <th>Категория товара</th>
+                    <th>Удаление</th>
+                    </thead>
+                    <tbody>
+                    <tr th:each="storItem : ${storage}">
+                        <td th:text="${storItem.component.name}">Название</td>
+                        <td th:text="${storItem.component.componentPrice}">Цена</td>
+                        <td th:text="${storItem.amount}">Количество</td>
+                        <td th:text="${storItem.component.category}">Категория</td>
+                        <td>
+                            <form action="/deleteStorageItem" method="post">
+                                <input type="hidden" name="deleteStorageItemId" th:value="${storItem.id}"/>
+                                <button type="submit">Удалить</button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div th:if="${totalCost}">
+                    <h1 th:text="'Цена заказа: ' + ${totalCost}"></h1>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer th:replace = "~{footer :: footer}"></footer>
+</body>
+
+<script src="java/main.js"></script>
+<script src="java/tab.js"></script>
+<script src="java/12p.js"></script>
+</html>
