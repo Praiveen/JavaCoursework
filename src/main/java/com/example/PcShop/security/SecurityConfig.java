@@ -24,7 +24,6 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-
     @Bean
     public SecurityFilterChain FilterChain(HttpSecurity http) throws Exception {
         http
@@ -32,8 +31,8 @@ public class SecurityConfig {
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((requests) -> requests
                                 .requestMatchers("/login").anonymous()
-                                .requestMatchers("/account").hasRole("USER")
-                                .requestMatchers("/account").hasRole("ADMIN")
+                                .requestMatchers("/user_page").hasRole("USER")
+                                .requestMatchers("/User_page").hasRole("ADMIN")
                                 .requestMatchers("/admin").hasRole("ADMIN")
                                 .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .requestMatchers("/css/**", "/js/**").permitAll()
