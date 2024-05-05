@@ -1,18 +1,11 @@
 package com.example.PcShop.services;
 
-import com.example.PcShop.entities.Component;
 import com.example.PcShop.entities.OrderList;
-import com.example.PcShop.entities.User;
 import com.example.PcShop.repositories.OrderListRepository;
 import com.example.PcShop.repositories.OrderRepository;
 import com.example.PcShop.entities.Order;
-import com.example.PcShop.repositories.RoleRepository;
-import com.example.PcShop.repositories.UserRepository;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class OrderService {

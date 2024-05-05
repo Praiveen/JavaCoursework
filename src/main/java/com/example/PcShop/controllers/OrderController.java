@@ -4,8 +4,6 @@ import com.example.PcShop.entities.Component;
 import com.example.PcShop.entities.User;
 import com.example.PcShop.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
-import org.aspectj.weaver.ast.Or;
-import org.springframework.security.core.Authentication;
 
 import com.example.PcShop.entities.Order;
 import com.example.PcShop.entities.OrderList;
@@ -20,11 +18,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 
 import java.time.LocalDate;
 import java.util.ArrayList;

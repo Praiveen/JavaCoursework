@@ -5,18 +5,11 @@ import com.example.PcShop.entities.User;
 import com.example.PcShop.services.CustomUserDetailsService;
 import com.example.PcShop.services.UserService;
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.security.core.Authentication;
-
 import org.springframework.ui.Model;
-import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,25 +32,6 @@ public class UserController {
 
         return "register";
     }
-
-
-//    @PostMapping("/register/save")
-//    public RedirectView addNewUser(@RequestParam String email,
-//                             @RequestParam String user_name,
-//                             @RequestParam String last_name,
-//                             @RequestParam String password) {
-//        User user = new User();
-//        user.setEmail(email);
-//        user.setFirstName(user_name);
-//        user.setLastName(last_name);
-//        user.setPassword(password);
-//        System.out.println(user.getEmail());
-//        System.out.println(user.getFirstName());
-//        userService.saveUser(user);
-//        RedirectView redirectView = new RedirectView();
-//        redirectView.setUrl("/index.html");
-//        return redirectView;
-//    }
 
 
     @PostMapping(value = "/regSave", consumes = "application/x-www-form-urlencoded")

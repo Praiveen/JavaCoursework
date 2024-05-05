@@ -1,6 +1,5 @@
 package com.example.PcShop.services;
 
-import com.example.PcShop.entities.Order;
 import com.example.PcShop.entities.Role;
 import com.example.PcShop.entities.User;
 import com.example.PcShop.repositories.RoleRepository;
@@ -8,10 +7,8 @@ import com.example.PcShop.repositories.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService{
@@ -64,25 +61,12 @@ public class UserService{
         return userRepository.findAll();
     }
 
-//    public List<User> findByRole(String roleName) {
-//        // Находим роль по ее имени
-//        Role role = roleRepository.findByName(roleName);
-//        if (role != null) {
-//            System.out.println("here");
-//            // Получаем всех пользователей с данной ролью
-//            return role.getUsers().stream().collect(Collectors.toList());
-//        } else {
-//            // Если роль не найдена, возвращаем пустой список
-//            return List.of();
-//        }
-//    }
 
     public void deleteUser(Long userId) {
         userRepository.deleteById(userId);
     }
 
     public void updateUserBanStatus(Long userId) {
-        // Найдем пользователя по его идентификатору
         User user = userRepository.findById(userId).orElse(null);
         if (user != null) {
             if (user.getAccountBan()){
@@ -96,27 +80,4 @@ public class UserService{
             throw new IllegalArgumentException("User not found with id: " + userId);
         }
     }
-
-//    @Override
-//    public List<UserDto> findAllUsers() {
-//        List<User> users = userRepository.findAll();
-//        return users.stream().map((user) -> convertEntityToDto(user))
-//                .collect(Collectors.toList());
-//    }
-
-//    private UserDto convertEntityToDto(User user){
-//        UserDto userDto = new UserDto();
-//        String[] name = user.getName().split(" ");
-//        userDto.setFirstName(name[0]);
-//        userDto.setLastName(name[1]);
-//        userDto.setEmail(user.getEmail());
-//        return userDto;
-//    }
-
-//    private Role checkRoleExist() {
-//        Role role = new Role();
-//        role.setName("ROLE_ADMIN");
-//        return roleRepository.save(role);
-//    }
-
 }

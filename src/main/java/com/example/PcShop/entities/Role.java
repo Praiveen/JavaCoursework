@@ -1,7 +1,6 @@
 package com.example.PcShop.entities;
 
 import jakarta.persistence.*;
-import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Set;
 

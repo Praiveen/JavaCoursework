@@ -1,6 +1,5 @@
 package com.example.PcShop.controllers;
 
-import com.example.PcShop.entities.Component;
 import com.example.PcShop.entities.User;
 import com.example.PcShop.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.List;
 
 @Controller
 public class AdminController {

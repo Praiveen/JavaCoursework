@@ -1,7 +1,6 @@
 package com.example.PcShop.repositories;
 
 import com.example.PcShop.entities.Role;
-import com.example.PcShop.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
