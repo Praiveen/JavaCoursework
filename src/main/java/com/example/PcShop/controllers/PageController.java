@@ -6,10 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PageController {
 
-    @GetMapping("/login")
-    public String loginForm() {
-        return "login";
-    }
 
     @GetMapping("/index")
     public String index1() {

@@ -29,10 +29,13 @@ public class UserController {
     @GetMapping("/register")
     public String registration(Model model) {
         model.addAttribute("userReg", new User());
-
         return "register";
     }
 
+    @GetMapping("/login")
+    public String loginForm() {
+        return "login";
+    }
 
     @PostMapping(value = "/regSave", consumes = "application/x-www-form-urlencoded")
     public String addNewUser(@ModelAttribute("userReg") @Valid User user, BindingResult result, Model model) {
@@ -53,7 +56,6 @@ public class UserController {
             model.addAttribute("Message", "Пользователь с такой почтой уже зарегестрирован");
             return "register";
         }
-
         model.addAttribute("RegFull", "Аккаунт зарегестрирован, теперь можно в него войти!");
         return "register";
     }
