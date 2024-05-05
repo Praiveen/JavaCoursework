@@ -10,8 +10,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
-@Getter
-@Setter
 public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_seq")
@@ -27,7 +25,6 @@ public class User{
     @Transient
     private String passwordConfirm;
     private Boolean accountBan;
-
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
