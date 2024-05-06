@@ -42,7 +42,6 @@ public class UserService{
         user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-
         System.out.println("eee");
         userRepository.save(user);
         return true;

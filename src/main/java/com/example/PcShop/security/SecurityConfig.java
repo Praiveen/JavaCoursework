@@ -27,10 +27,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain FilterChain(HttpSecurity http) throws Exception {
         http
+
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((requests) -> requests
                                 .requestMatchers("/login").anonymous()
+                                .requestMatchers("/register").anonymous()
                                 .requestMatchers("/user_page").authenticated()
                                 .requestMatchers("/admin").hasRole("ADMIN")
                                 .requestMatchers("/admin/**").hasRole("ADMIN")

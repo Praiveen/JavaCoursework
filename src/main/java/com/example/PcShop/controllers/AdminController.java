@@ -37,7 +37,7 @@ public class AdminController {
     }
 
     @PostMapping("/userDetailsView")
-    public String bans(@RequestParam("userId") Long userId, RedirectAttributes redirectAttributes, Model model) {
+    public String userDetailsView(@RequestParam("userId") Long userId, RedirectAttributes redirectAttributes, Model model) {
         User user = userService.findById(userId);
         model.addAttribute("users", userService.findAll());
         model.addAttribute("details", user.getOrders());

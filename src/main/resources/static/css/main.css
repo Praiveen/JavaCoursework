@@ -279,7 +279,6 @@ nav{
   font-size: clamp(13px, 1.2vw, 18px);
   transition: color 0.2s, background 0.5s;
   margin: 1px;
-  position: sticky;
   top: 0;
 }
 
@@ -1701,7 +1700,7 @@ input[type="number"] {
 
 .form-group{
 /*	border: 2px solid grey;*/
-	padding: 12px 20px 12px 20px;
+	padding: 6px 20px 6px 20px;
 	
 	/*box-sizing: border-box;
 	background: white;
@@ -1825,7 +1824,7 @@ input[type="number"] {
 }
 
 .outButtonBlock{
-	padding: 20px;
+	padding: 10px 20px 10px 20px;
 }
 
 #saveButton,  #outButton{

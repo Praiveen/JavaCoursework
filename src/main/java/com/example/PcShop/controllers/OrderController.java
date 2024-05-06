@@ -62,14 +62,10 @@ public class OrderController {
     }
 
     @GetMapping("/{category}_store")
-    public String getAllComponents(@AuthenticationPrincipal CustomUserDetailsService.CustomUserDetails customUserDetails,
-                                   @PathVariable("category") String category,
-                                   Model model) {
+    public String getAllComponents(@AuthenticationPrincipal CustomUserDetailsService.CustomUserDetails customUserDetails, @PathVariable("category") String category, Model model) {
         model.addAttribute("orderCostUnderBin", "Корзина");
         model.addAttribute("orderListAmount", 0);
-
         if (customUserDetails != null){
-            System.out.println("dddddd");
             User user = userService.findById(customUserDetails.getUser().getId());
             Order order = findOrderCurrentUser(customUserDetails);
             if (user.getAccountBan()){
@@ -78,7 +74,6 @@ public class OrderController {
                 model.addAttribute("components", components);
                 return category + "_store";
             }
-
             if (order == null) {
                 System.out.println("new");
                 order = new Order();
@@ -94,31 +89,22 @@ public class OrderController {
                 model.addAttribute("orderCostUnderBin", order.getTotalCost() + " \u20BD");
             }
         }
-        else {
-            model.addAttribute("orderError", "Войдите в аккаунт, чтобы сделать заказ");
-        }
+        else {model.addAttribute("orderError", "Войдите в аккаунт, чтобы сделать заказ");}
         List<Component> components = componentService.findByCategory(category);
         model.addAttribute("components", components);
         return category + "_store";
     }
 
     @PostMapping("/addToCart")
-    public String addToCart(@AuthenticationPrincipal CustomUserDetailsService.CustomUserDetails customUserDetails,
-                            @RequestParam("productId") int productId,
-                            @RequestParam("quantity") Integer quantity,
-                            HttpServletRequest request,
-                            Model model){
+    public String addToCart(@AuthenticationPrincipal CustomUserDetailsService.CustomUserDetails customUserDetails, @RequestParam("productId") int productId, @RequestParam("quantity") Integer quantity, HttpServletRequest request, Model model){
         model.addAttribute("orderCostUnderBin", "Корзина");
         model.addAttribute("orderListAmount", 0);
         String referer = request.getHeader("referer");
-//        System.out.println(category);
         if (customUserDetails != null){
             User user = userService.findById(customUserDetails.getUser().getId());
             Order order = findOrderCurrentUser(customUserDetails);
             if (user.getAccountBan()){
                 model.addAttribute("orderError", "Ваш аккаунт заблокирован, добавить товар в корзину невозможно");
-//                List<Component> components = componentService.findByCategory(category);
-//                model.addAttribute("components", components);
                 return "redirect:" + referer;
             }
             boolean productExistsInOrder = false;
@@ -144,13 +130,8 @@ public class OrderController {
                 orderService.saveOrder(order);
                 model.addAttribute("orderListAmount", order.getOrderList().size());
             }
-
-
         }
-        else {
-            model.addAttribute("orderError", "Войдите в аккаунт, прежде чем делать покупки");
-        }
-//        model.addAttribute("components", componentService.findByCategory(category));
+        else {model.addAttribute("orderError", "Войдите в аккаунт, прежде чем делать покупки");}
         return "redirect:" + referer;
     }
 
@@ -167,11 +148,6 @@ public class OrderController {
             Order order = findOrderCurrentUser(customUserDetails);
             order.setTotalCost(calculateTotalCost(order.getOrderList()));
             orderService.saveOrder(order);
-//            User user = userService.findById(customUserDetails.getUser().getId());
-//            if (user.getAccountBan()){
-//                model.addAttribute("enterError", "Ваш аккаунт заблокирован, оформить заказ невозможно");
-//                return "storage";
-//            }
             if (order != null){
                 model.addAttribute("orderId", order.getId());
                 model.addAttribute("storage", order.getOrderList());
@@ -189,15 +165,6 @@ public class OrderController {
                                     @RequestParam("deleteStorageItemId") int deleteStorageItemId,
                                     Model model){
         orderService.deleteOrderList(deleteStorageItemId);
-        return "redirect:/storage";
-    }
-
-    @PostMapping("updateAmount")
-    public String updateAmount(@RequestParam("storItem") int storItem,
-                               @RequestParam("quantity") Integer quantity){
-        OrderList orderList = orderService.findById(storItem);
-        orderList.setAmount(quantity);
-        orderService.saveOrderList(orderList);
         return "redirect:/storage";
     }
 

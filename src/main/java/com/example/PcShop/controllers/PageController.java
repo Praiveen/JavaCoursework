@@ -32,6 +32,40 @@ public class PageController {
         return "pc_recomendation";
     }
 
+    @GetMapping("/news_page1")
+    public String news_page1(){
+        return "news_page1";
+    }
+
+    @GetMapping("/news_page2")
+    public String news_page2(){
+        return "news_page2";
+    }
+
+    @GetMapping("/news_page3")
+    public String news_page3(){
+        return "news_page3";
+    }
+
+    @GetMapping("/news_page4")
+    public String news_page4(){
+        return "news_page4";
+    }
+
+    @GetMapping("/news_page5")
+    public String news_page5(){
+        return "news_page5";
+    }
+
+    @GetMapping("/news_page6")
+    public String news_page6(){
+        return "news_page6";
+    }
+
+    @GetMapping("/news_page7")
+    public String news_page7(){
+        return "news_page7";
+    }
 
 
 }

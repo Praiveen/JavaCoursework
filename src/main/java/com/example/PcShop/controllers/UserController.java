@@ -66,9 +66,7 @@ public class UserController {
         Set<Role> roles = userService.findById(customUserDetails.getUser().getId()).getRoles();
         List<String> roleNames = new ArrayList<>();
 
-        for (Role role : roles) {
-            roleNames.add(role.getName());
-        }
+        for (Role role : roles) {roleNames.add(role.getName());}
         model.addAttribute("role", roleNames);
         model.addAttribute("user", userService.findById(customUserDetails.getUser().getId()));
         model.addAttribute("userOrders", userService.findById(customUserDetails.getUser().getId()).getOrders());
@@ -85,18 +83,12 @@ public class UserController {
         user.setLastName(userDetail.getLastName());
         user.setPhoneNumber(userDetail.getPhoneNumber());
         userService.saveUser(user, "update");
-
-
         Set<Role> roles = userService.findById(customUserDetails.getUser().getId()).getRoles();
         List<String> roleNames = new ArrayList<>();
-
-        for (Role role : roles) {
-            roleNames.add(role.getName());
-        }
+        for (Role role : roles) {roleNames.add(role.getName());}
         model.addAttribute("role", roleNames);
         model.addAttribute("user", userService.findById(customUserDetails.getUser().getId()));
         model.addAttribute("userOrders", userService.findById(customUserDetails.getUser().getId()).getOrders());
-
         return "user_page";
     }
 
